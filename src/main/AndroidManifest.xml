@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sinitek.mix" >
+
+    <!--//网络-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!--//sd卡读写-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application>
+        <activity android:name=".innerAC.__WeexMainActivity" />
+        <activity android:name=".innerAC.__WeexToNativeForwardProxyActivity"
+            android:label="WeexToNativeForwardProxyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <category android:name="com.taobao.android.intent.category.WEEX"/>
+                <action android:name="com.alibaba.weex.protocol.openurl"/>
+
+                <data android:host="weex_mix.com"
+                    android:path="/proxyAC"
+                    android:scheme="weex"/>
+
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+                <data android:scheme="file"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

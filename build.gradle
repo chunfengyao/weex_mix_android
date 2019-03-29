@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        debug {
+            //debug模式下开启java和jni的调试入口
+            debuggable true
+            jniDebuggable true
+            //vue调试服务器配置。
+            buildConfigField "String", "debugAddrUrl", '"ws://127.0.0.1:8089/debugProxy/native"'
+            minifyEnabled false
+        }
+        release {
+            //release模式下屏蔽java和jni的调试入口
+            debuggable false
+            jniDebuggable false
+            minifyEnabled false
+            //vue调试服务器配置。
+            buildConfigField "String", "debugAddrUrl", '""' //置空，请勿填写，不可删除，否则会编译失败的。
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //Weex依赖以及fastjson
+    compile 'com.taobao.android:weex_sdk:0.20.0.2@aar'
+    compile 'com.alibaba:fastjson:1.1.46.android'
+    //用于默认的适配器
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    //support library dependencies
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:support-v4:23.1.1'
+    //debug依赖
+    debugCompile 'com.taobao.android:weex_inspector:0.18.10'
+    //debug时必须要有okhttp
+    compile 'com.squareup.okhttp:okhttp:2.3.0'
+    compile 'com.squareup.okhttp:okhttp-ws:2.3.0'
+}
