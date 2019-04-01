@@ -5,9 +5,11 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.sinitek.mix.R;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 import com.taobao.weex.adapter.IWXImgLoaderAdapter;
 import com.taobao.weex.common.WXImageStrategy;
 import com.taobao.weex.dom.WXImageQuality;
@@ -30,15 +32,20 @@ class __WXImgLoaderAdapter implements IWXImgLoaderAdapter {
         if ("".equals(tmpUrl.trim())){
             return;
         }
-        new Picasso.Builder(view.getContext())
-                .listener(tmpListener)
-                .build()
+        Picasso.with(view.getContext())
                 .load(Uri.parse(url))
+
                 .error(view.getContext().getResources().getDrawable(R.drawable.weex_error))
-                .memoryPolicy(MemoryPolicy.NO_STORE)
-                //取消对磁盘缓存的屏蔽，减少服务器负担。
-//                .networkPolicy(NetworkPolicy.NO_STORE)
                 .into(view);
+//        new Picasso.Builder(view.getContext())
+//                .listener(tmpListener)
+//                .build()
+//                .load(Uri.parse(url))
+//                .error(view.getContext().getResources().getDrawable(R.drawable.weex_error))
+////                .memoryPolicy(MemoryPolicy.NO_STORE)
+//                //取消对磁盘缓存的屏蔽，减少服务器负担。
+////                .networkPolicy(NetworkPolicy.NO_STORE)
+//                .into(view);
     }
 }
 

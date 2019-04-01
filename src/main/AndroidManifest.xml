@@ -11,25 +11,42 @@
 
     <application>
         <activity android:name=".innerAC.__WeexMainActivity" />
+        <!--中转页，用于处理跳转的-->
         <activity android:name=".innerAC.__WeexToNativeForwardProxyActivity"
             android:label="WeexToNativeForwardProxyActivity"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar">
+            >
+            <!--Weex跳转push（常规跳转，文件跳转、无host限制的）-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-
                 <category android:name="com.taobao.android.intent.category.WEEX"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
                 <action android:name="com.alibaba.weex.protocol.openurl"/>
 
-                <data android:host="weex_mix.com"
-                    android:path="/proxyAC"
-                    android:scheme="weex"/>
+                <data android:scheme="http"
+                    android:host="*"/>
+                <data android:scheme="https"
+                    android:host="*"/>
+                <data android:scheme="file"
+                    android:host="*"/>
+                <data android:scheme="local"
+                    android:host="*"/>
+                <data android:scheme="data"
+                    android:host="*"/>
+            </intent-filter>
+            <!--Weex跳转push（约定跳转、限制了host的，用于js中的特定跳转。）-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.taobao.android.intent.category.WEEX"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="file"/>
+                <action android:name="com.alibaba.weex.protocol.openurl"/>
+
+                <data android:scheme="weex"
+                    android:host="weex_mix.com"
+                    android:path="/proxyAC"/>
             </intent-filter>
         </activity>
     </application>
