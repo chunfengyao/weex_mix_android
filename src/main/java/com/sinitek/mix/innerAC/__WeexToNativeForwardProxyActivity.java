@@ -52,7 +52,6 @@ public class __WeexToNativeForwardProxyActivity extends FragmentActivity {
             Set<String> paramList = result.getQueryParameterNames();
             Log.d(LOG_TAG, "\n\tURL:"+getIntent().getDataString());
             Log.d(LOG_TAG, "\n\t当前协议为:"+getIntent().getData().getScheme());
-            //来自推送通知的触发。
             if (paramList != null && paramList.size() > 0
                     && getIntent().getDataString() != null){
                 Log.i(LOG_TAG, "收到的参数个数：" + paramList.size()+"");
