@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.taobao.weex.IWXRenderListener;
 import com.taobao.weex.WXSDKInstance;
+import com.taobao.weex.common.IWXBridge;
 import com.taobao.weex.common.WXRenderStrategy;
 
 import java.io.Serializable;
@@ -48,8 +49,11 @@ public class WeexActivityManager implements IWXRenderListener, Serializable {
      * @param context   用于startActivity的Activity上下文，例如：MainActivity.this
      * @param bundleUrl 在线的js bundle文件的地址
      * @param pageName  当前页面的名称，用于调试信息的定位
-     * @param options
-     * @param jsonInitData
+     * @param options   传给页面的参数列表
+     * @param jsonInitData  传给页面js的json数据
+     *                      详见
+     *                      {@link IWXBridge#execJS(java.lang.String, java.lang.String, java.lang.String, com.taobao.weex.bridge.WXJSObject[])}
+     *                      的args参数
      * @param renderStrategy    页面渲染策略
      * @param activityCallBack  自定义的Activity回调（Weex页面生命周期的监听）
      */
@@ -116,8 +120,11 @@ public class WeexActivityManager implements IWXRenderListener, Serializable {
      * @param context   用于startActivity的Activity上下文，例如：MainActivity.this
      * @param localjsPATH 本地的位于assert目录下的js bundle文件路径，例：位于assert目录下有一文件：example.js。则此处传入"example.js"
      * @param pageName  当前页面的名称，用于调试信息的定位
-     * @param options
-     * @param jsonInitData
+     * @param options   传给页面的参数列表
+     * @param jsonInitData  传给页面js的json数据
+     *                      详见
+     *                      {@link IWXBridge#execJS(java.lang.String, java.lang.String, java.lang.String, com.taobao.weex.bridge.WXJSObject[])}
+     *                      的args参数
      * @param renderStrategy    页面渲染策略
      * @param activityCallBack  自定义的Activity回调（Weex页面生命周期的监听）
      */
